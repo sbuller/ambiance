@@ -1,0 +1,13 @@
+A simple sound looper. Combine with your favourite background noise.
+Edit main.cpp to suite your needs (the quantity and paths of tracks)
+---
+mkdir build
+cd build
+qmake ..
+make
+---
+place the resultant 'ambiance' binary in a directory with the sound
+traks. Run
+---
+./ambiance
+
