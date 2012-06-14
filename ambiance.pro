@@ -5,8 +5,9 @@
 #-------------------------------------------------
 
 QT       += core phonon
-
 QT       -= gui
+
+QMAKE_CXXFLAGS += -std=c++0x
 
 TARGET = ambiance
 CONFIG   += console
