@@ -13,6 +13,9 @@ TARGET = ambiance
 CONFIG   += console
 CONFIG   -= app_bundle
 
+target.path = /usr/local/bin
+INSTALLS += target
+
 TEMPLATE = app
 
 SOURCES += main.cpp \
