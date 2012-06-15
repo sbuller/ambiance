@@ -18,24 +18,25 @@
  */
 
 #include <QObject>
-#include <QString>
-#include <phonon>
+#include <QStringList>
+#include <QList>
 
-using namespace Phonon;
+#include "looper.h"
 
-class Looper : public QObject
+class Player : public QObject
 {
-	Q_OBJECT
+Q_OBJECT
 
-	MediaSource  m_src;
-	MediaObject* m_obj;
-	AudioOutput* m_out;
+	bool m_playing;
+	QList<Looper*> m_loops;
+
+	void each(void (*process)(Looper*));
 
 public:
-	explicit Looper(QString path, QObject *parent = 0);
+	explicit Player(QStringList paths, QObject *parent = 0);
 
 public slots:
-	void loop();
 	void play();
 	void pause();
+	bool isPlaying();
 };

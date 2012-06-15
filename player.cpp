@@ -1,4 +1,3 @@
-#pragma once
 /* Copyright 2012  Stefan Buller <stefan.buller@gmail.com>
  *
  * This file is part of Ambiance.
@@ -18,24 +17,44 @@
  */
 
 #include <QObject>
-#include <QString>
-#include <phonon>
+#include <QStringList>
+#include <QList>
 
-using namespace Phonon;
+#include "player.h"
 
-class Looper : public QObject
+Player::Player(QStringList paths, QObject *parent) :
+	QObject(parent)
 {
-	Q_OBJECT
+	for (int i=0; i<paths.length(); i++) {
+		m_loops.append(new Looper(paths[i]));
+	}
+	m_playing = true;
+}
 
-	MediaSource  m_src;
-	MediaObject* m_obj;
-	AudioOutput* m_out;
+void Player::each(void (*process)(Looper*))
+{
+	for (int i=0; i<m_loops.length(); i++) {
+		process(m_loops[i]);
+	}
+}
 
-public:
-	explicit Looper(QString path, QObject *parent = 0);
+bool Player::isPlaying()
+{
+	return m_playing;
+}
 
-public slots:
-	void loop();
-	void play();
-	void pause();
-};
+void Player::play()
+{
+	m_playing = true;
+	each([](Looper *l){
+		l->play();
+	});
+}
+
+void Player::pause()
+{
+	m_playing = false;
+	each([](Looper *l){
+		l->pause();
+	});
+}

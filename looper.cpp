@@ -36,3 +36,13 @@ void Looper::loop()
 {
 	m_obj->enqueue(m_src);
 }
+
+void Looper::play()
+{
+	m_obj->play();
+}
+
+void Looper::pause()
+{
+	m_obj->pause();
+}

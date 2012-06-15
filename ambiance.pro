@@ -19,7 +19,9 @@ INSTALLS += target
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    looper.cpp
+    looper.cpp \
+    player.cpp \
 
 HEADERS += \
-    looper.h
+    looper.h \
+    player.h \
