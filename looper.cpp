@@ -27,7 +27,6 @@ Looper::Looper(QString path, QObject *parent) :
 
 	createPath(m_obj, m_out);
 	m_obj->setCurrentSource(m_src);
-	m_obj->play();
 
 	connect(m_obj, SIGNAL(aboutToFinish()), this, SLOT(loop()));
 }
